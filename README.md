@@ -11,23 +11,23 @@ The Stack:
 
 ###Client
 1. Webpack
-	i. Lodash
-	ii.	Webpack-dev-server 
-	iii. Babel
+	- Lodash
+	- Webpack-dev-server 
+	- Babel
 		1. Babel-loader
 		2. Babel-core
 		3. Babel-preset-es2015
 		4. Babel-preset-react
 2. React
-	i. React-dom
+	- React-dom
 3. Mobx
-	i. Mobx-react
+	- Mobx-react
 
 ###Server
 1. Python
 2. Pymongo
 3. Flask
-	i. Flask-cors
+	- Flask-cors
 4. MongoDb
 
 
