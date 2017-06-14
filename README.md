@@ -1,9 +1,9 @@
 oX is a React boilerplate.
 =====================
 
-This is the client side. Server side repository is at XXX.
+This is the client side. Server side repository is [here](https://github.com/Hookkid/oXserver "oXserver").
 
-In the effort to create a development environment that can be quickly initiated and at the same time have cutting-edge DOM manipulator, state management and NO-SQL db, I am building this tool.
+In an effort to create a development environment that can be quickly initiated and at the same time have cutting-edge DOM manipulator, state management and NO-SQL db, I am building this tool.
 
 It is already functioning as intended although there are imminent upgrades coming.
 
