@@ -9,7 +9,7 @@ It is already functioning as intended although there are imminent upgrades comin
 
 The Stack:
 
-###Client
+### Client
 1. Webpack
 	- Lodash
 	- Webpack-dev-server 
@@ -23,7 +23,7 @@ The Stack:
 3. Mobx
 	- Mobx-react
 
-###Server
+### Server
 1. Python
 2. Pymongo
 3. Flask
