@@ -18,10 +18,18 @@ The Stack:
 		2. Babel-core
 		3. Babel-preset-es2015
 		4. Babel-preset-react
+		5. css-loader
+		6. sass-loader
+		6. file-loader
+		7. style-loader
+		8. url-loader
 2. React
 	- React-dom
 3. Mobx
 	- Mobx-react
+4. Bootstrap
+	- react-bootstrap
+5. Font awesome
 
 ### Server
 1. Python

@@ -6,7 +6,7 @@ export class TodoStore {
 
   fetch() {
     var self = this
-    fetch('http://localhost:5000/star',{method: 'get'})
+    fetch('http://localhost:5000/',{method: 'get'})
       .then(fetchedTodos => {
         return fetchedTodos.json()
       })

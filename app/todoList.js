@@ -1,5 +1,6 @@
 import React from "react"
 import { observer } from "mobx-react"
+import { Button } from 'react-bootstrap'
 
 
 @observer
@@ -12,6 +13,9 @@ export default class TodoList extends React.Component {
   render() {
     const { todos, isLoading } = this.props.store
     var todoLis = <li></li>
+    const buttonsInstance = (      
+  <Button>Click me! <i className='fa fa-user'></i></Button>
+    )
 
     if(isLoading){
       todoLis = <li>Loading</li>
@@ -21,10 +25,12 @@ export default class TodoList extends React.Component {
           <span>{todo.name} - {todo.distance}</span>
         </li>
       ))
+
     }
 
     return <div>
       <ul>{ todoLis }</ul>
+      {buttonsInstance}
     </div>
   }
 }
