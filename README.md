@@ -25,6 +25,8 @@ The Stack:
 		8. url-loader
 2. React
 	- React-dom
+	- React-router
+		- react-router-dom
 3. Mobx
 	- Mobx-react
 4. Bootstrap

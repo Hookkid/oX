@@ -3,9 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import 'font-awesome/css/font-awesome.css'
-import "./style/style.less"
-
+import 'font-awesome/less/font-awesome.less'
+import './style/style.less'
 
 const app = document.getElementById("app")
 

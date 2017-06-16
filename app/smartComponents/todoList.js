@@ -30,6 +30,7 @@ export default class TodoList extends React.Component {
 
     return <div>
       <ul>{ todoLis }</ul>
+      <p>I can also show you a bootstrap stylized button with a font-awesome icon in it:</p>
       {buttonsInstance}
     </div>
   }
