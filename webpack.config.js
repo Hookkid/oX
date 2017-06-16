@@ -21,7 +21,7 @@ module.exports = {
           { loader: "style-loader" },
           { loader: "css-loader" },
           { loader: "less-loader" }
-        ]
+          ]
       },
       { 
         test: /\.png$/, 
@@ -50,7 +50,8 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: [ { loader: "babel-loader" } ],
-        exclude: /(node_modules|bower_components)/        
+        exclude: /(node_modules|bower_components)/
+        
       }
     ]
 },
