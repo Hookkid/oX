@@ -8,6 +8,79 @@
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-cursive: 'Nixie One', cursive;
 
+@-webkit-keyframes rotation {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(359deg);
+	}
+}
+
+@keyframes bounceup{
+    from {top: 0px;} 
+    to {top:-5px;} 
+}
+@-moz-keyframes bounceup{
+    from {top: -5px;} 
+    to {top:0px;} 
+}
+
+@keyframes bouncedown{
+    from {left: 0px;} 
+    to {left:20px;} 
+}
+@-moz-keyframes bouncedown{
+    from {left: 20px;} 
+    to {left:0px;} 
+}
+
 .jumbotron h1{
 	font-family: @font-family-cursive;
+}
+
+.icon{
+	position: relative;
+	margin-right: 5px;
+	top: 1px;
+	left: 0px;
+	opacity: 0;
+	cursor: pointer;
+    -webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+}
+
+.fa-spinner{
+	-webkit-animation: rotation 2s infinite linear;
+}
+
+li:hover .icon{
+	opacity: 1;
+    -webkit-transform: translate(5px,0);
+    -moz-transform: translate(5px,0);
+    -o-transform: translate(5px,0);
+    -ms-transform: translate(5px,0);
+    transform: translate(5px,0);
+}
+
+li:hover{
+	cursor: pointer;
+}
+
+.bounceDown{
+	position: relative;
+    animation:bouncedown 0.2s;
+    -moz-animation:bouncedown 0.2s; /* Firefox */
+    -webkit-animation:bouncedown 0.2s; /* Safari and Chrome */   
+
+}
+
+.inputHolder{
+	position: relative;
+    animation:bounceup 0.2s;
+    -moz-animation:bounceup 0.2s; /* Firefox */
+    -webkit-animation:bounceup 0.2s; /* Safari and Chrome */        
+
 }

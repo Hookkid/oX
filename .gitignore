@@ -1,2 +1,9 @@
 node_modules
 dist
+
+*.css
+*.woff2
+*.eot
+*.svg
+*.ttf
+*.woff

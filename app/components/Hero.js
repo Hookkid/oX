@@ -10,8 +10,8 @@ export class Hero extends React.Component{
 
       <div className="jumbotron">
         <h1>oX</h1>
-        <p>This template is a working product of the oX framework. It features React alongisde with react-router 4, MobX for state management and mongoDB for data fetching and storing.</p>
-        <p>A customizable bootstrap template is available as well as the font-awesome library. Grunt is to be implemented next.</p>
+        <p>This template is a working product of the oX framework. It features React alongside with react-router 4, MobX for state management and mongoDB for data fetching and storing.</p>
+        <p>A customizable bootstrap template is available as well as the font-awesome library. Grunt is to be implemented next. The full stack list can be found here.</p>
       </div>   
       </div>
 

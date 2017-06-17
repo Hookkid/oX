@@ -12,7 +12,7 @@ export class Page extends React.Component{
     <div className="row">
     <div className="col-md-12">
             <div className="mongoDB">
-      <p>Here is some data being fetched live from mongoDB Atlas:</p>
+      <p>How about we <b>CRUD</b> some data live from mongoDB Atlas:</p>
       <TodoList store={TodoStore} />
       </div>
     </div>
