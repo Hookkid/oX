@@ -1,4 +1,4 @@
-import { computed, observable } from 'mobx'
+import { computed, observable, action } from 'mobx'
 
 class Todo{
   @observable key
@@ -16,23 +16,89 @@ class Todo{
 export class TodoStore {
   @observable isLoading  = true
   @observable todos = []
+  @observable filter = ""
 
-  fetch() {
-    var self = this
+  @observable selectedTodo =  {
+    key: null,
+    name: '',
+    distance: ''
 
-    fetch('http://localhost:5000/',{method: 'get'})
-      .then(fetchedTodos => {
-        return fetchedTodos.json()
-      })
-      .then(function(returnedValue) {
-        returnedValue.result.map(element => {
-          self.todos.push(new Todo(element.key, element.name, element.distance))
-        })
-        self.isLoading = false
-      })      
   }
 
-  createTodo(value){
+  @action fetchAll() {
+    var self = this
+    self.todos = [];
+    fetch('http://localhost:5000/',{method: 'get'})
+    .then(fetchedTodos => {
+        return fetchedTodos.json()
+    })
+    .then(function(returnedValue) {
+      returnedValue.result.map(element => {
+        self.todos.push(new Todo(element.key, element.name, element.distance))
+      })
+      self.isLoading = false
+    })      
+  }
+
+  @action changeData(field, value) {    
+    this.selectedTodo[field] = value
+  }
+
+  @action selectTodo(key){
+    var self = this
+
+    fetch('http://localhost:5000/' + key,{method: 'get'})
+    .then(fetchedTodos => {
+      return fetchedTodos.json()
+    })
+    .then(function(returnedValue) {
+      self.selectedTodo = {
+        key: returnedValue.result.key,
+        name: returnedValue.result.name,
+        distance: returnedValue.result.distance
+      }
+    self.isLoading = false
+    console.log('Edit Open Successfull')
+    })
+    .catch (function (error) {
+      console.log(JSON.stringify(json.json))
+      console.log('Request failed', error)
+    })
+  }
+
+  @action saveTodo(){
+    var self = this
+    self.isLoading = true
+    var json = {
+      key: this.selectedTodo.key,
+      name: this.selectedTodo.name,
+      distance: this.selectedTodo.distance
+    }
+
+    fetch('http://localhost:5000/update/', {
+      method: 'post',
+      headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+      body: JSON.stringify(json)
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (result) {
+      self.clearSelectedTodo()
+      self.isLoading = false
+      self.fetchAll()
+      console.log('Save Successfull',result)
+    })
+    .catch (function (error) {
+      console.log(JSON.stringify(json.json))
+      console.log('Request failed', error)
+    })
+  }
+
+  @action createTodo(value){
     var self = this
     self.isLoading = true
     var json = {   
@@ -62,7 +128,11 @@ export class TodoStore {
     })
   }
 
-  deleteTodo(key){
+  @action clearSelectedTodo() {
+      this.selectedTodo = { }
+  }
+
+  @action deleteTodo(key){
 
     var self = this
     self.isLoading = true

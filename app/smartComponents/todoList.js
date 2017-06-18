@@ -1,4 +1,5 @@
 import React from "react"
+import { toJS } from "mobx"
 import { observer } from "mobx-react"
 import { Button } from 'react-bootstrap'
 import $ from 'jquery'
@@ -7,67 +8,57 @@ var className = "";
 
 @observer
 export default class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEditing: {},
-      inputText : "",
-      inputNumber : "",
-    };
-  }
+
+
   componentDidMount() {
-    this.props.store.fetch();
+    this.props.store.fetchAll()    
   }
 
-  createNew(e) {
+  onInputChange(e){
+    this.props.store.changeData(e.target.name, e.target.value);
+  }
+
+  createNewTodo(e) {
     if (e.which === 13) {
       this.props.store.createTodo(e.target.value)
       e.target.value = ""
     }
   }
 
-  openEdit(key){
-    this.setState({
-      isEditing: key,
-      inputText: "231213",
-      inputNumber: "6"
-    })
+  openEdit(key){    
+    this.props.store.selectTodo(key)
   }
 
   cancelEdit(key){
-    this.setState({
-      isEditing: {}
-    })
+    this.props.store.selectedTodo.key = {}
   }
 
   deleteTodo(key){
     this.props.store.deleteTodo(key)
   }
 
-  onInputChange(e){
-    this.setState({
-      inputText: e.value
-    })
-  }
-
   render() {
 
-    const { todos, isLoading } = this.props.store
+    const {  todos, isLoading } = this.props.store
+
     var todoLis = <li></li>
     const buttonsInstance = (<div>
       <Button>Click me! <i className='fa fa-user'></i></Button>
-      <input className="new" onKeyPress={this.createNew.bind(this)} />
-    </div> )
+      <input className="new" onKeyPress={this.createNewTodo.bind(this)} />
+    </div>)
 
     if(isLoading){
       todoLis = <li><i className='fa fa-spinner'></i></li>
     }else{      
       todoLis = todos.slice().map(todo => {
-        if(this.state.isEditing==todo.key){
+        if(this.props.store.selectedTodo.key==todo.key){
           return(
             <li key={todo.key}> 
-              <span className="inputHolder"><input className="editInput" onChange={this.onInputChange} value={this.state.inputText} /> - <input className="editInput" onChange={this.onInputChange} value={this.state.inputNumber}/></span>
-              <i className='fa fa-floppy-o icon'></i>
+              <span className="inputHolder">
+                <input className="editInput" name="name" onChange={this.onInputChange.bind(this)} value={this.props.store.selectedTodo.name} /> - 
+                <input className="editInput" name="distance" onChange={this.onInputChange.bind(this)} value={this.props.store.selectedTodo.distance}/>
+              </span>
+              <a onClick={() => this.props.store.saveTodo()}><i className='fa fa-floppy-o icon'></i></a>
               <a onClick={() => this.cancelEdit()}><i className='fa fa-ban icon'></i></a>
             </li> 
           )
