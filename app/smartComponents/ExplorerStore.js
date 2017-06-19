@@ -1,7 +1,4 @@
 import { computed, observable, action } from 'mobx'
-import $ from 'jquery'
-import dt from 'datatables.net'
-import buttons from'datatables.net-buttons'
 
 export class ExplorerStore {
   @observable dbs = []
@@ -14,28 +11,8 @@ export class ExplorerStore {
         return fetchedTodos.json()
     })
     .then(function(returnedValue) {
-    var arrDataTable = []
+    self.dbs = returnedValue.result
 
-    returnedValue.result.map(value => arrDataTable.push([value]))
-
-    $('#tableCollections').DataTable( {
-      data: arrDataTable,
-      sorting: true,
-      paging: true,
-      lengthChange: false,
-      searching: true,
-      info: false,
-      columns: [
-        { title: "Collection name" }
-      ]
-    })
-  
-
-
-     // returnedValue.result.map(element => {
-        //self.todos.push(new Todo(element.key, element.name, element.distance))
-      //})
-      //self.isLoading = false
     })      
   }
 
