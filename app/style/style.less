@@ -3,7 +3,16 @@
 @import '~bootstrap/less/bootstrap.less';
 @import 'https://fonts.googleapis.com/css?family=Nixie+One|Merriweather|Raleway';
 
+body{
+  background: -webkit-radial-gradient(#e4e5e4, #989eac, #989eac); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#e4e5e4, #989eac, #989eac); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#e4e5e4, #989eac, #989eac); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#e4e5e4, #989eac, #989eac); /* Standard syntax */
+}
 
+body,html{
+	height: 100%;
+}
 // Defining our color pallet:
 
 //Blue + Accents
@@ -22,6 +31,13 @@
 
 //Green
 @main-green: #00d810;
+
+
+@brand-primary:         darken(#e24a2c, 6.5%); // #337ab7
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
 
 
 @font-family-sans-serif:  'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -109,4 +125,14 @@ li:hover{
     -moz-animation:bounceup 0.2s; /* Firefox */
     -webkit-animation:bounceup 0.2s; /* Safari and Chrome */        
 
+}
+
+.page{
+	background-color: rgba(255, 255, 255, 0.45);
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 5px;
+	margin-bottom: 20px;
 }

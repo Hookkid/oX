@@ -2,13 +2,15 @@ import React from "react"
 import { toJS } from "mobx"
 import { observer } from "mobx-react"
 import { Button } from 'react-bootstrap'
-import $ from 'jquery'
-
-var className = "";
 
 @observer
 export default class TodoList extends React.Component {
-
+  constructor(){
+    super()
+    this.state = {
+      'todoInputText' : ''
+    }
+  }
 
   componentDidMount() {
     this.props.store.fetchAll()    
@@ -18,12 +20,28 @@ export default class TodoList extends React.Component {
     this.props.store.changeData(e.target.name, e.target.value);
   }
 
-  createNewTodo(e) {
-    if (e.which === 13) {
-      this.props.store.createTodo(e.target.value)
-      e.target.value = ""
+  createNewTodo(value) {
+    if (value != "") {
+      this.props.store.createTodo(value)
     }
+    this.setState({
+      'todoInputText' : ''
+    })
   }
+
+  todoInputChange(e) {
+    this.setState({
+      'todoInputText' : e.target.value
+    })
+  }
+
+  todoInputKeyPress(e){
+    if (e.which === 13) {
+      this.createNewTodo(e.target.value)
+      e.target.value = ""
+    }    
+  }
+
 
   openEdit(key){    
     this.props.store.selectTodo(key)
@@ -42,9 +60,11 @@ export default class TodoList extends React.Component {
     const {  todos, isLoading } = this.props.store
 
     var todoLis = <li></li>
-    const buttonsInstance = (<div>
-      <Button>Click me! <i className='fa fa-user'></i></Button>
-      <input className="new" onKeyPress={this.createNewTodo.bind(this)} />
+    const buttonsInstance = (<div className="row">
+      <div className="col-lg-3">
+        <input className="form-control input-sm" onKeyPress={this.todoInputKeyPress.bind(this)}  onChange={this.todoInputChange.bind(this)} value={this.state.todoInputText} />
+      </div>
+      <Button onClick={() => this.createNewTodo(this.state.todoInputText)}>Add a new record <i className='fa fa-plus'></i></Button>
     </div>)
 
     if(isLoading){
@@ -77,7 +97,7 @@ export default class TodoList extends React.Component {
 
     return <div>
       <ul>{ todoLis }</ul>
-      <p>I can also show you a bootstrap stylized button with a font-awesome icon in it:</p>
+      <p>Use the field bellow to add a new record to the database or hover over the list items to save or delete an existing record:</p>
       {buttonsInstance}
     </div>
   }

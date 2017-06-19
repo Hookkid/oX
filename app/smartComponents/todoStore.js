@@ -47,7 +47,7 @@ export class TodoStore {
   @action selectTodo(key){
     var self = this
 
-    fetch('http://localhost:5000/' + key,{method: 'get'})
+    fetch('http://localhost:5000/key/' + key,{method: 'get'})
     .then(fetchedTodos => {
       return fetchedTodos.json()
     })
